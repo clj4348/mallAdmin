@@ -1,4 +1,5 @@
 .DS_Store
 node_modules/
 dist
-*.log
+yarn.lock
+yarn-error.log
