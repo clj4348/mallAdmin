@@ -84,7 +84,10 @@ const config = {
     })
   ],
   devServer: {
-    port: 8086
+    port: 8086,
+    historyApiFallback: {
+      index: '/dist/index.html'
+    },
   }
 }
 module.exports = config;
