@@ -3,6 +3,10 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
+function resolve (dir) {
+  return path.join(__dirname, './', dir)
+}
+
 const config = {
   entry: './src/app.jsx',
   output: {
@@ -83,11 +87,31 @@ const config = {
       filename: 'js/base.js'
     })
   ],
+  // 别名
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': resolve('src/page'),
+      'image': resolve('src/assets/img'),
+      'service':  resolve('src/service'),
+      'component': resolve('src/component'),
+      'util': resolve('src/util')
+    }
+  },
   devServer: {
     port: 8086,
     historyApiFallback: {
       index: '/dist/index.html'
     },
+    proxy: {        
+       '/api': {
+            target: 'http://test.happymmall.com',
+            changeOrigin: true,   //允许跨域
+            pathRewrite: {
+              '^/api': ''
+            }
+        }
+    }
   }
 }
 module.exports = config;

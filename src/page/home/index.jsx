@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 class Home extends Component {
   constructor(props){
     super(props)
@@ -6,7 +6,7 @@ class Home extends Component {
   render(){
     return (
       <div>
-        这是首页
+        这是首面
       </div>
     )
   }
