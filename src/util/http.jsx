@@ -25,12 +25,12 @@ axios.interceptors.response.use((response) => {
 
 function successStatus (res) {
   // loading 
-  // 如果 http 状态吗正常，成功回调
-  if(res && (res.status === 200 || res.status === 304 || res.status === 400)){
-    return res.data
-  }
-  if(res.status === 10){
+  if(res.data.status === 10){
     doLogin();
+  }
+  // 如果 http 状态吗正常，成功回调
+  if(res && (res.status === 200 || res.status === 304 || res.status === 400)){ 
+    return res.data
   }
   alert('网络请求出错了')
 }

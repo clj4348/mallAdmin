@@ -22,7 +22,7 @@ class NavSide extends Component {
           </Menu.Item>
           <SubMenu key="sub2" title={<span>商品</span>}>
             <Menu.Item key="5">
-              <Link to={'/goods_manage'}>商品管理</Link>
+              <Link to={'/product/manage'}>商品管理</Link>
             </Menu.Item>
             <Menu.Item key="6">品类管理</Menu.Item>
           </SubMenu>
