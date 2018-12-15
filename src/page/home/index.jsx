@@ -30,17 +30,20 @@ class Home extends Component {
         <Row gutter={16}>
           <Link to="/user">
             <Col span={8}>
-              <Card title="用户总数" style={{background: '#f0ad4e', color:'#fff'}}>{this.state.userCount}</Card>
+              <Card title="用户总数"
+              style={{background: '#f0ad4e', color:'#fff'}}>{this.state.userCount}</Card>
             </Col>
           </Link>
           <Link to="/product">
             <Col span={8}>
-              <Card title="商品总数" style={{background: '#5cb85c', color:'#fff'}}>{this.state.productCount}</Card>
+              <Card title="商品总数"
+                style={{background: '#5cb85c', color:'#fff'}}>{this.state.productCount}</Card>
             </Col>
           </Link>
           <Link to="/order">
             <Col span={8}>
-              <Card title="订单总数" style={{background: '#4cb1cf', color:'#fff'}}>{this.state.orderCount}</Card>
+              <Card title="订单总数"
+                style={{background: '#4cb1cf', color:'#fff'}}>{this.state.orderCount}</Card>
             </Col>
           </Link>
         </Row>

@@ -105,7 +105,7 @@ const config = {
     },
     proxy: {        
        '/api': {
-            target: 'http://test.happymmall.com',
+            target: 'http://adminv2.happymmall.com',
             changeOrigin: true,   //允许跨域
             pathRewrite: {
               '^/api': ''
