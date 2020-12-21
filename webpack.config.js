@@ -1,76 +1,57 @@
 const path  = require('path');
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 单独分离打包css
+const srcRoot =  path.resolve(__dirname, 'src');
 
 function resolve (dir) {
   return path.join(__dirname, './', dir)
 }
 
 const config = {
+  mode: 'development',
   entry: './src/app.jsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: 'js/app.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'js/[name].js'
   },
   module: {
     rules: [
-      // jsx文件的处理
       {
-        test: /\.(jsx|js)$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react']
-          }
-        }
+        test:/\.(js|jsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+        exclude:/node_modules/
       },
-      // css文件的处理
       {
         test: /\.css$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
+        use:[
+          "style-loader",
+          "css-loader",
+        ],
       },
-      // scss文件的处理
       {
         test: /\.scss$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'sass-loader'
-          ]
-        })
-      },
-      // 图片的配置
-      {
-        test: /\.(png|jpg|gif)$/,
         use:[
-          {
-            loader: 'url-loader',
-            options:{
-              limit: 8192,
-              name: 'resource/[name].[ext]'
-            }
-          }
-        ]
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          'postcss-loader'
+        ],
       },
-      // 字体图标的配置
       {
-        test:/\.(eot|svg|ttf|woff|woff2|otf)$/,
-        use:[
-          {
-            loader: 'url-loader',
-            options:{
-              limit: 8192,
-              name: 'resource/[name].[ext]'
-            }
+        test: /\.(png|jpg|jpeg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 1024,
+            name: 'resources/[name].[ext]'
           }
-        ]
+        }],
+        include: srcRoot
       }
     ]
   },
@@ -79,13 +60,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    // css单独编译处理
-    new ExtractTextWebpackPlugin("css/[name].css"), 
-    // 提取公共模块
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: 'js/base.js'
-    })
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   // 别名
   resolve: {
@@ -100,17 +76,14 @@ const config = {
   },
   devServer: {
     port: 8086,
-    historyApiFallback: {
-      index: '/dist/index.html'
-    },
     proxy: {        
-       '/api': {
-            target: 'http://adminv2.happymmall.com',
-            changeOrigin: true,   //允许跨域
-            pathRewrite: {
-              '^/api': ''
-            }
-        }
+      '/api': {
+          target: 'http://adminv2.happymmall.com',
+          changeOrigin: true,   //允许跨域
+          pathRewrite: {
+            '^/api': ''
+          }
+      }
     }
   }
 }

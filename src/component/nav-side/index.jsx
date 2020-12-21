@@ -27,10 +27,14 @@ class NavSide extends Component {
             <Menu.Item key="6">品类管理</Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" title={<span>订单</span>}>
-            <Menu.Item key="9">订单管理</Menu.Item>
+            <Menu.Item key="9">
+              <Link to={'/order'}>订单管理</Link>
+            </Menu.Item>
           </SubMenu>
            <SubMenu key="sub4" title={<span>用户</span>}>
-            <Menu.Item key="10">用户管理</Menu.Item>
+            <Menu.Item key="10">
+              <Link to={'/user'}>用户管理</Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>

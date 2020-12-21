@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import {
   Table,
   Divider,
@@ -41,7 +42,7 @@ class ProductManage extends Component {
     this.setState({
       pageNum: selectedRowKeys
     }, () => {
-       this.loadingUserList({
+      this.loadingUserList({
         pageSize:  this.state.pageSize,
         pageNum: this.state.pageNum
       });
@@ -89,12 +90,16 @@ class ProductManage extends Component {
     })
   }
   groundingOrUndercarriage(params) {
-    console.log(params);
+    const status = params.status === 1 ? 2 : 1;
     getGroundingOrUndercarriage({
       productId: params.id,
-      status: params.status
+      status: status
     }).then( res => {
-       message.success(res.data, 1);
+      message.success(res.data, 1);
+      this.loadingUserList({
+        pageSize:  this.state.pageSize,
+        pageNum: this.state.pageNum
+      });
     })
   }
   render(){
@@ -148,7 +153,9 @@ class ProductManage extends Component {
             title="操作"
             render = {(item) =>(
                 <div>
-                  <Tag  color={'#2db7f5'}>查看</Tag>
+                  <Tag  color={'#2db7f5'}>
+                    <Link  to={'/product/detail/' + item.id}>查看</Link>
+                  </Tag>
                   <Tag  color={'#2db7f5'}>编辑</Tag>
                 </div>
               )}

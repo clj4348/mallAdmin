@@ -7,8 +7,12 @@ const getGoodsList = (options) =>  http.post('/api/manage/product/list.do',optio
 const getGroundingOrUndercarriage = (options) =>  http.get('/api/manage/product/set_sale_status.do',options);
 // 搜索接口
 const getSearch = (options) =>  http.get('/api/manage/product/search.do',options)
+// 商品详情
+const getProductDetail = (options) =>  http.get('/api/manage/product/detail.do',options)
+
 export {
   getGoodsList,
   getGroundingOrUndercarriage,
-  getSearch
+  getSearch,
+  getProductDetail
 } 

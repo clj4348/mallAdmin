@@ -1,5 +1,7 @@
-import axios from 'axios'
-import Qs from 'qs'
+import axios from 'axios';
+import Qs from 'qs';
+import React, { Component } from "react";
+import { HashRouter, Route, Redirect } from "react-router-dom";
 /*
 * axios请求拦截
 * @param {object} config axios请求配置对象
@@ -36,7 +38,9 @@ function successStatus (res) {
 }
 // 跳转登录
 function doLogin(){
-  window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+  const router = new HashRouter()
+  //路由跳转
+  router.history.push('/login')// <Redirect to="/login" />
 }
 // post和get 方法
 export default {

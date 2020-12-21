@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
 import { getUserList } from 'service/user.jsx';
 import moment from 'moment'
 console.log(moment(Date.now()).format('YYYY-MM-DD') );
 const { Column, ColumnGroup } = Table;
 
-import './user.scss';
-
+import './user.less';
 class User extends Component {
   constructor(props){ 
     super(props);

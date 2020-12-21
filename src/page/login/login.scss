@@ -1,4 +1,4 @@
-.login-form{
+.login-form-container{
 	position: absolute;
 	top: 200px;
 	left: 0;
@@ -8,20 +8,19 @@
 	background: #fff;
 	margin: auto;
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, .1);
-}
+	.login-tit{
+		text-align: center;
+		font-size: 20px;
+		color: #333;
+	}
 
-.login-tit{
-	text-align: center;
-	font-size: 20px;
-	color: #333;
-}
+	.login-form-button-mall{
+		width: 100%;
+	}
 
-.login-form-button-mall{
-	width: 100%;
-}
-
-.username-password-flag{
-	position: absolute;
-	bottom: -52px;
-	left: 12px;
+	.username-password-flag{
+		position: absolute;
+		bottom: -36px;
+		left: 12px;
+	}
 }
